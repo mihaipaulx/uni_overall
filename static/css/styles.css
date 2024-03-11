@@ -44,6 +44,12 @@ button[type="submit"]:focus {
   background-color: #d4482d; /* Darker color on hover and focus */
 }
 
+#submit-button:disabled {
+  background-color: darkgray; /* Change the background color to dark gray */
+  color: white; /* Change the text color to white */
+  cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+}
+
 
 /* Result styles */
 .result {

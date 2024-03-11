@@ -46,6 +46,9 @@ window.addEventListener("DOMContentLoaded", e => {
           // Append the unordered list to the container element
           container.appendChild(ul);
       }
+
+      var submitButton = document.getElementById("submit-button");
+      submitButton.disabled = false;
     });
   });
 
@@ -62,7 +65,9 @@ window.addEventListener("DOMContentLoaded", e => {
 function toggleEvent(socket) {
   var prevURL = "";
   var currentURL = document.getElementById("textInput").value;
+  var submitButton = document.getElementById("submit-button");
   if (currentURL !== "" && currentURL !== prevURL) {
+      submitButton.disabled = true;
       socket.emit('submit', currentURL);
       console.log("submit");
       prevURL = currentURL
