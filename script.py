@@ -29,7 +29,7 @@ chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--log-level=3")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
-def get_overall(uni_url, socketio):
+def get_overall(uni_url, socketio, session_id):
   loading_progress = 0
 
   link = Link()
@@ -38,7 +38,7 @@ def get_overall(uni_url, socketio):
   
   driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
   loading_progress += LOADING_PROGRESS_UNIT
-  socketio.emit("update_loading", loading_progress)
+  socketio.emit("update_loading", loading_progress, to=session_id)
   
   for field, keyword_types in keywords.items():
     field_query = keyword_types["query"]
@@ -68,7 +68,7 @@ def get_overall(uni_url, socketio):
 
     time.sleep(random.uniform(MIN_SLEEP, MAX_SLEEP))
     loading_progress += LOADING_PROGRESS_UNIT
-    socketio.emit("update_loading", loading_progress)
+    socketio.emit("update_loading", loading_progress, to=session_id)
 
   driver.quit()
 

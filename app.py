@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_socketio import SocketIO
 from dotenv import load_dotenv
 from forms import Form
@@ -21,8 +21,9 @@ socketio = SocketIO(app)
 # Listen on submit
 @socketio.on('submit')
 def handle_submit(domain):
-  overall = get_overall(domain, socketio)
-  socketio.emit('overall_data', overall)
+  session_id = request.sid
+  overall = get_overall(domain, socketio, session_id)
+  socketio.emit('overall_data', overall, to=session_id)
 
 # Serve /
 @app.route('/')
