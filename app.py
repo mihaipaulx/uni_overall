@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Response
 from dotenv import load_dotenv
 from forms import Form
 from flask_wtf.csrf import CSRFProtect
+import threading
 import os
 
 from script import get_overall
@@ -18,7 +19,13 @@ csrf = CSRFProtect(app)
 @app.route('/get_overall', methods=['POST'])
 def process():
   uni_url = request.json
-  return Response(get_overall(uni_url), mimetype='application/json')
+
+  def run_in_thread():
+    with app.app_context():
+      return Response(get_overall(uni_url), mimetype='application/json')
+    
+  thread = threading.Thread(target=run_in_thread)
+  thread.start()
 
 # Serve /
 @app.route('/')
