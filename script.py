@@ -25,20 +25,20 @@ MAX_SLEEP = int(os.getenv('MAX_SLEEP'))
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox") 
+chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--blink-settings=imagesEnabled=false")
 chrome_options.add_argument("--log-level=3")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
-driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-
 def get_overall(uni_url):
   loading_progress = 0
 
   link = Link()
   
+  driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+
   for field, keyword_types in keywords.items():
     found_link = False
     field_query = keyword_types["query"]
