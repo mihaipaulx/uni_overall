@@ -45,14 +45,14 @@ def get_overall(uni_url):
     query = f"{uni_url} {field_query}"
     url = link.build(query)
 
-    try:
-      driver.get(url)
-    except Exception as e:
-      print(e)
+    driver.get(url)
 
-    accept_cookies(driver)    
+    accept_cookies(driver)
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
+    
+    print(soup.prettify())
+
     anchors = soup.find_all("a")
 
     for anchor in anchors:
