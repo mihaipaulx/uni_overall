@@ -4,31 +4,31 @@ keywords = {
     "url": ["calendar", "intake", "term"],
   },
   "programs": {
-    "query": "academic programs",
+    "query": "undergraduate academic programs",
     "url": ["program", "degree", "course", "major", "academics"],
   },
   "tuition": {
-    "query": "tuition fees",
+    "query": "undergraduate tuition fees",
     "url": ["tuition", "cost", "fees", "finaid", "financial"],
   },
   "international_tuition": {
-    "query": "international tuition fees",
+    "query": "undergraduate international tuition fees",
     "url": ["tuition", "cost", "fees", "finaid", "financial"],
   },
   "deadlines": {
-    "query": "application deadlines",
+    "query": "undergraduate application deadlines",
     "url": ["apply", "deadline", "application", "admission"],
   },
   "international_deadlines": {
-    "query": "international application deadlines",
+    "query": "international undergraduate application deadlines",
     "url": ["apply", "deadline", "application", "admission"],
   },
   "requirements": {
-    "query": "admission requirements",
-    "url": ["requirement", "document"],
+    "query": "undergraduate admission requirements",
+    "url": [""],
   },
   "english": {
-    "query": "english requirements",
+    "query": "undergraduate english requirements",
     "url": [""],
   },
   "graduate_programs": {

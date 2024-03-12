@@ -6,16 +6,17 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Uni Overall</title>
 </head>
 <body>
   <div class="container">
     <form id="submit-form">
-      {{ form.csrf_token }}
       {{ form.hidden_tag() }}
       {{ form.text_input(id='textInput') }}<br>
       <button type="submit" id="submit-button"><i class="fa fa-search"></i></button>
     </form>
+    <p>Progress: <span id="loading-progress">0</span>%</p>
     <div id="linkContainer">
 
     </div>

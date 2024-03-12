@@ -6,7 +6,7 @@ def accept_cookies(driver):
   try:
     # Wait for the accept button to be clickable
     accept_button = WebDriverWait(driver, 0).until(
-      EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Accept') or contains(text(), 'Agree')]"))
+      EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Accept') or contains(text(), 'Agree') or contains(text(), 'Save')]"))
     )
     accept_button.click()
   except:

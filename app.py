@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request
-from flask_socketio import SocketIO
+from flask import Flask, render_template, request, Response
 from dotenv import load_dotenv
 from forms import Form
 from flask_wtf.csrf import CSRFProtect
@@ -15,22 +14,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 csrf = CSRFProtect(app)
 
-# Initialize socketio
-socketio = SocketIO(app)
-
 # Listen on submit
-@socketio.on('submit')
-def handle_submit(domain):
-  session_id = request.sid
-  overall = get_overall(domain, socketio, session_id)
-  socketio.emit('overall_data', overall, to=session_id)
+@app.route('/get_overall', methods=['POST'])
+def process():
+  uni_url = request.json
+  return Response(get_overall(uni_url), mimetype='application/json')
 
 # Serve /
 @app.route('/')
 def index():
-    form = Form()
-    return render_template('index.html', form=form)
+  print("App started")
+  form = Form()
+  return render_template('index.html', form=form)
 
 # Run app
 if __name__ == '__main__':
-  socketio.run(app)
+  app.run()
