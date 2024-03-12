@@ -47,14 +47,12 @@ def get_overall(uni_url):
 
     driver.get(url)
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(2)
 
     accept_cookies(driver)
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
     
-    print(soup.prettify())
-
     anchors = soup.find_all("a")
 
     for anchor in anchors:
