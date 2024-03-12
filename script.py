@@ -45,8 +45,11 @@ def get_overall(uni_url):
     query = f"{uni_url} {field_query}"
     url = link.build(query)
 
-    driver.get(url)
-    
+    try:
+      driver.get(url)
+    except Exception as e:
+      print(e)
+
     accept_cookies(driver)    
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
